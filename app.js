@@ -4,15 +4,21 @@ const app = express();
 
 // Step 1
 app.get('/nextdate/:date/:month/:year', (req, res) => {
-    console.log(`Responding to /nextdate/${req.params.date}/${req.params.month}/${req.params.year}`);
+    // console.log(`Responding to /nextdate/${req.params.date}/${req.params.month}/${req.params.year}`);
     const date = parseInt(req.params.date);
     const month = parseInt(req.params.month);
     const year = parseInt(req.params.year);
 
+    if (Number.isNaN(date) || Number.isNaN(month) || Number.isNaN(year)) {
+        let response_string = "Invalid Input";
+        // console.log("Sent : " + response_string);
+        return res.status(400).send(response_string);
+    }
+
     // Validate
     if (date < 1 || date > 31 || month < 1 || month > 12 || year > 2012 || year < 1812) {
         let response_string = "Invalid Input";
-        console.log("Sent : " + response_string);
+        // console.log("Sent : " + response_string);
         return res.status(400).send(response_string);
     }
     let nextdate = date;
@@ -36,7 +42,7 @@ app.get('/nextdate/:date/:month/:year', (req, res) => {
             nextmonth = month + 1;
         } else {
             let response_string = "Invalid Input";
-            console.log("Sent : " + response_string);
+            // console.log("Sent : " + response_string);
             return res.status(400).send(response_string);
         }
     }
@@ -56,7 +62,7 @@ app.get('/nextdate/:date/:month/:year', (req, res) => {
             nextmonth = month + 1;
         } else {
             let response_string = "Invalid Input";
-            console.log("Sent : " + response_string);
+            // console.log("Sent : " + response_string);
             return res.status(400).send(response_string);
         }
     }
@@ -114,20 +120,20 @@ app.get('/nextdate/:date/:month/:year', (req, res) => {
 
                 // Step 17
                 let response_string = "Invalid Input";
-                console.log("Sent : " + response_string);
+                // console.log("Sent : " + response_string);
                 return res.status(400).send(response_string);
             }
         }
     }
 
     let response_string = `Next Date: ${nextdate}\/${nextmonth}\/${nextyear}`;
-    console.log("Sent : " + response_string);
+    // console.log("Sent : " + response_string);
     // Step 18
     return res.status(200).send(response_string);
 })
 
 app.get('/names', (req, res) => {
-    console.log("Responding to /names");
+    // console.log("Responding to /names");
     let namelist = {
         61: 'yuktha',
         62: 'yuvika',
@@ -145,17 +151,19 @@ app.get('/names', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    console.log("Responding to /");
+    // console.log("Responding to /");
     res.status(200).send("API Testing server");
 })
 
 app.all('*', (req, res) => {
-    console.log("Invalid Request");
+    // console.log("Invalid Request");
     res.status(400).send("Error: Invalid request");
 })
 
 
 port = 4040
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Server running at ${port}`);
 });
+
+module.exports = server;
