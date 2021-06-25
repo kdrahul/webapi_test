@@ -4,7 +4,8 @@
   "description": "REST Api testing",
   "main": "app.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start":"nodemon"
   },
   "repository": {
     "type": "git",
