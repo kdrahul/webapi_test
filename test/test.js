@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 desc('Boundary Value Analysis', () => {
     desc('Valid Values', () => {
-        dates = [
+        let valid_dates = [
             "30/03/2000",
             "02/03/2000",
             "15/11/2000",
@@ -18,10 +18,11 @@ desc('Boundary Value Analysis', () => {
             "15/03/1913",
         ];
 
-        for (let i = 0; i < dates.length; i++) {
-            it(`${dates[i]}`, (done) => {
+        for (let i = 0; i < valid_dates.length; i++) {
+            it(`${valid_dates[i]}`, (done) => {
+                let req_string = "/nextdate/" + valid_dates[i];
                 chai.request(server)
-                    .get(`/nextdate/${dates[i]}`)
+                    .get(req_string)
                     .end((err, response) => {
                         response.should.have.status(200);
                         done()
@@ -31,7 +32,7 @@ desc('Boundary Value Analysis', () => {
         }
     });
     desc('Invalid Values', () => {
-        dates = [
+        let invalid_dates = [
             "15/aa/1900",
             "dd/06/1901",
             "15/06/196y",
@@ -41,10 +42,10 @@ desc('Boundary Value Analysis', () => {
             "15/03/2013",
         ];
 
-        for (let i = 0; i < dates.length; i++) {
-            it(`${dates[i]}`, (done) => {
+        for (let i = 0; i < invalid_dates.length; i++) {
+            it(`${invalid_dates[i]}`, (done) => {
                 chai.request(server)
-                    .get(`/nextdate/${dates[i]}`)
+                    .get(`/nextdate/${invalid_dates[i]}`)
                     .end((err, response) => {
                         response.should.have.status(400);
                         done()
