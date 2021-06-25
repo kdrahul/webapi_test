@@ -1,10 +1,15 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 
+
+// Step 1
 app.get('/nextdate/:date/:month/:year', (req, res) => {
     console.log(`Responding to /nextdate/${req.params.date}/${req.params.month}/${req.params.year}`);
     const date = parseInt(req.params.date);
     const month = parseInt(req.params.month);
     const year = parseInt(req.params.year);
+
+    // Validate
     if (date < 1 || date > 31 || month < 1 || month > 12 || year > 2012 || year < 1812) {
         let response_string = "Invalid Input";
         console.log("Sent : " + response_string);
@@ -115,15 +120,28 @@ app.get('/nextdate/:date/:month/:year', (req, res) => {
         }
     }
 
-
     let response_string = `Next Date: ${nextdate}\/${nextmonth}\/${nextyear}`;
     console.log("Sent : " + response_string);
+    // Step 18
     return res.status(200).send(response_string);
 })
 
-app.get('/names/:id', (req, res) => {
-    console.log("Responding to /nextdate");
-    res.status(200).send("API Testing server");
+app.get('/names', (req, res) => {
+    console.log("Responding to /names");
+    let namelist = {
+        61: 'yuktha',
+        62: 'yuvika',
+        63: 'siddharth',
+        64: 'athul krishna',
+        65: 'roshan kumar',
+        66: 'yash',
+        67: 'ritviz',
+        404: 'nandini',
+        405: 'varun',
+        408: 'rahul'
+
+    };
+    res.status(200).send(namelist);
 })
 
 app.get('/', (req, res) => {
