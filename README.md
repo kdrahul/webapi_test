@@ -4,7 +4,7 @@
 
 ## NextDate problem
 
-Software testing lab has a code to generate valid next dates from given current dates.
+_Software testing lab_ has a code to generate valid next dates from given current dates.
 We can test that code by using `npm test`. It points to test cases written in
 `test/test.js`
 
@@ -17,7 +17,8 @@ We can test that code by using `npm test`. It points to test cases written in
 ## Installation
 
 #### Pre-requisites
-NodeJS must npm(comes with nodejs) must be installed.
+
+NodeJS must be installed, npm(comes with nodejs) must be installed with it.
 
 Clone this repository. `cd` into this project 
 > npm install
