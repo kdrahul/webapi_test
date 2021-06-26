@@ -15,6 +15,16 @@ app.get('/nextdate/:date/:month/:year', (req, res) => {
         return res.status(400).send(response_string);
     }
 
+    //Leap year
+    let leap = false;
+    if (year % 400 == 0 && year % 100 == 0) {
+        leap = true;
+    } else if (year % 4 == 0) {
+        leap = true;
+    } else {
+        leap = false;
+    }
+
     // Validate
     if (date < 1 || date > 31 || month < 1 || month > 12 || year > 2012 || year < 1812) {
         let response_string = "Invalid Input";
@@ -95,7 +105,7 @@ app.get('/nextdate/:date/:month/:year', (req, res) => {
         } else {
 
             // Step 13
-            if (date == 28 && year % 4 == 0) {
+            if (date == 28 && leap) {
 
                 // Step 14
                 nextdate = 29;
@@ -110,7 +120,7 @@ app.get('/nextdate/:date/:month/:year', (req, res) => {
             }
 
             // Step 16
-            if (date == 29 && year % 4 == 0) {
+            if (date == 29 && leap) {
 
                 // Step 15
                 nextdate = 1;
