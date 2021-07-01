@@ -142,9 +142,23 @@ app.get('/nextdate/:date/:month/:year', (req, res) => {
     return res.status(200).send(response_string);
 })
 
-app.get('/triange/:a/:b/:c', (req, res) => {
+app.get('/names', (req, res) => {
+    // console.log("Responding to /names");
+    let namelist = {
+        61: 'yuktha',
+        62: 'yuvika',
+        63: 'siddharth',
+        64: 'athul krishna',
+        65: 'roshan kumar',
+        66: 'yash',
+        67: 'ritviz',
+        404: 'nandini',
+        405: 'varun',
+        408: 'rahul'
 
-});
+    };
+    res.status(200).send(namelist);
+})
 
 app.get('/', (req, res) => {
     // console.log("Responding to /");
