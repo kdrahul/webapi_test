@@ -144,6 +144,8 @@ app.get('/nextdate/:date/:month/:year', (req, res) => {
 
 app.get('/names', (req, res) => {
     // console.log("Responding to /names");
+    // Setting header
+    res.setHeader('Content-Type', 'application/json');
     let namelist = {
         61: 'yuktha',
         62: 'yuvika',
@@ -157,7 +159,7 @@ app.get('/names', (req, res) => {
         408: 'rahul'
 
     };
-    res.status(200).send(namelist);
+    res.status(200).json(namelist);
 })
 
 app.get('/', (req, res) => {
