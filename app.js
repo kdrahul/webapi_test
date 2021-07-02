@@ -147,17 +147,16 @@ app.get('/names', (req, res) => {
     // Setting header
     res.setHeader('Content-Type', 'application/json');
     let namelist = {
-        61: 'yuktha',
-        62: 'yuvika',
-        63: 'siddharth',
-        64: 'athul krishna',
-        65: 'roshan kumar',
-        66: 'yash',
-        67: 'ritviz',
-        404: 'nandini',
-        405: 'varun',
-        408: 'rahul'
-
+        61: {'name': 'yuktha', 'age': 20, 'marks': [29, 28, 30, 29, 29]},
+        62: {'name': 'yuvika', 'age': 20, 'marks': [30, 30, 29, 27, 25]},
+        63: {'name': 'siddharth', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+        64: {'name': 'athul krishna', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+        65: {'name': 'roshan kumar', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+        66: {'name': 'yash', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+        67: {'name': 'ritviz', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+        404: {'name': 'nandini', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+        405: {'name': 'varun', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+        408: {'name': 'rahul', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
     };
     res.status(200).json(namelist);
 })
