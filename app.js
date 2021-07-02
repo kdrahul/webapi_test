@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 // Step 1
 app.get('/nextdate/:date/:month/:year', (req, res) => {
@@ -142,24 +143,33 @@ app.get('/nextdate/:date/:month/:year', (req, res) => {
     return res.status(200).send(response_string);
 })
 
-app.get('/names', (req, res) => {
-    // console.log("Responding to /names");
-    // Setting header
-    res.setHeader('Content-Type', 'application/json');
-    let namelist = {
-        61: {'name': 'yuktha', 'age': 20, 'marks': [29, 28, 30, 29, 29]},
-        62: {'name': 'yuvika', 'age': 20, 'marks': [30, 30, 29, 27, 25]},
-        63: {'name': 'siddharth', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
-        64: {'name': 'athul krishna', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
-        65: {'name': 'roshan kumar', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
-        66: {'name': 'yash', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
-        67: {'name': 'ritviz', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
-        404: {'name': 'nandini', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
-        405: {'name': 'varun', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
-        408: {'name': 'rahul', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
-    };
-    res.status(200).json(namelist);
-})
+let namelist = [
+    {'id': 61, 'name': 'yuktha', 'age': 20, 'marks': [29, 28, 30, 29, 29]},
+    {'id': 62, 'name': 'yuvika', 'age': 20, 'marks': [30, 30, 29, 27, 25]},
+    {'id': 63, 'name': 'siddharth', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+    {'id': 64, 'name': 'athul krishna', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+    {'id': 65, 'name': 'roshan kumar', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+    {'id': 66, 'name': 'yash', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+    {'id': 67, 'name': 'ritviz', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+    {'id': 404, 'name': 'nandini', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+    {'id': 405, 'name': 'varun', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+    {'id': 408, 'name': 'rahul', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
+];
+
+app.route('/names')
+    // Get request for Names
+    .get((req, res) => {
+        // console.log("Responding to /names");
+        // Setting header
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(namelist);
+    })
+
+    .post((req, res) => {
+        console.log(req.body);
+        namelist.push(req.body);
+        return res.status(200).json(namelist);
+    });
 
 app.get('/', (req, res) => {
     // console.log("Responding to /");
