@@ -4,7 +4,7 @@
 
 ## NextDate problem
 
-_Software testing lab_ has a code to generate valid next dates from given current dates.
+The **NextDate** problem is an easy program which generates the next valid date for a given date.
 We can test that code by using `npm test`. It points to test cases written in
 `test/test.js`
 
