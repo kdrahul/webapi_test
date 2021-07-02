@@ -110,10 +110,8 @@ app.get('/nextdate/:date/:month/:year', (req, res) => {
 
                 // Step 14
                 nextdate = 29;
-
             }
-
-            else {
+            else if (date == 28 && leap) {
 
                 // Step 15
                 nextdate = 1;
@@ -121,7 +119,7 @@ app.get('/nextdate/:date/:month/:year', (req, res) => {
             }
 
             // Step 16
-            if (date == 29) {
+            else if (date == 29 && leap) {
 
                 // Step 15
                 nextdate = 1;
