@@ -151,7 +151,6 @@ let namelist = [
     {'id': 67, 'name': 'ritviz', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
     {'id': 404, 'name': 'nandini', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
     {'id': 405, 'name': 'varun', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
-    {'id': 408, 'name': 'rahul', 'age': 20, 'marks': [25, 28, 29, 30, 26]},
 ];
 
 app.route('/names')

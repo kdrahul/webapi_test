@@ -8,14 +8,22 @@ chai.use(chaiHttp);
 
 
 desc('Boundary Value Analysis', () => {
-    desc('Valid Values', () => {
+    desc.only('Valid Values', () => {
+        let expected_values = [
+            "31/3/2000",
+            "3/3/2000",
+            "16/11/2000",
+            "16/2/2000",
+            "16/3/2011",
+            "16/3/1913",
+        ];
         let valid_dates = [
-            "30/03/2000",
-            "02/03/2000",
+            "30/3/2000",
+            "2/3/2000",
             "15/11/2000",
             "15/2/2000",
             "15/3/2011",
-            "15/03/1913",
+            "15/3/1913",
         ];
 
         for (let i = 0; i < valid_dates.length; i++) {
@@ -25,6 +33,7 @@ desc('Boundary Value Analysis', () => {
                     .get(req_string)
                     .end((err, response) => {
                         response.should.have.status(200);
+                        response.text.should.equals("Next Date: " + expected_values[i]);
                         done()
                     });
             });
